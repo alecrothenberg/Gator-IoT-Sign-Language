@@ -6,8 +6,8 @@ const NavBar = () => {
     color: '#0000FF', 
     height: '80px',
     display: 'flex',
-    alignItems: 'center',
     padding: '0 20px',
+    textAlign: 'center'
   };
 
   return (

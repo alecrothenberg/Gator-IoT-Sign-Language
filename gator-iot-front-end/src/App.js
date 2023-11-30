@@ -1,6 +1,8 @@
 import './App.css';
-import ImageDisplayWindow from './Components/imageDisplayWindow';
+import About from './Components/About';
+import DisplayText from './Components/DisplayText';
 import NavBar from './Components/NavBar';
+
 
 var signedInput = "Temp String for now";
 
@@ -8,7 +10,8 @@ function App() {
   return (
     <div>
       <NavBar />
-     <ImageDisplayWindow signedTextInput={signedInput}/>
+      <About />
+      <DisplayText signedTextInput={signedInput}/>
     </div>
   );
 }
