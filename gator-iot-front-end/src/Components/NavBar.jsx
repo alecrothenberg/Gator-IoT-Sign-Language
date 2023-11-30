@@ -2,12 +2,10 @@ import React from "react";
 
 const NavBar = () => {
   const navbarStyle = {
-    backgroundColor: '#FFA500', 
     color: '#0000FF', 
     height: '80px',
-    display: 'flex',
     padding: '0 20px',
-    textAlign: 'center'
+    textAlign: 'center', 
   };
 
   return (

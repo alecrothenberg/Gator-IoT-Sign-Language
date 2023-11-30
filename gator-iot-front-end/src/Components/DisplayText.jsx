@@ -2,18 +2,37 @@ import { onValue, ref } from "firebase/database";
 import React, { useState } from "react";
 import { db } from "../firebase";
 
-const DisplayText = ({ signedTextInput }) => {
+const DisplayText = () => {
   const containerStyle = {
     textAlign: 'center',
-    maxWidth: '100%',
+    maxWidth: '80%',
+    margin: 'auto',
+    marginTop: '50px',
   };
 
-  // Use state instead of useRef to handle re-renders
+  const textAreaStyle = {
+    width: '100%',
+    minHeight: '100px',
+    fontSize: '18px',
+    margin: '20px 0',
+    padding: '10px',
+    boxSizing: 'border-box',
+  };
+
+  const buttonStyle = {
+    padding: '10px 20px',
+    fontSize: '16px',
+    cursor: 'pointer',
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+  };
+
   const [fullWord, setFullWord] = useState("");
-  
+
   const fetchData = async () => {
     try {
-      // Reference to the data in the database (adjust the path as needed)
       const dataRef = ref(db, 'Translation/translated_val');
 
       onValue(
@@ -23,18 +42,17 @@ const DisplayText = ({ signedTextInput }) => {
 
           if (data !== null) {
             if (data === "SPACE") {
-              // Use setFullWord to update state
               setFullWord("");
             } else {
-              // Use setFullWord to update state
               setFullWord((prevWord) => prevWord + data);
             }
           } else {
             console.log("null val from snapshot");
+            throw new Error("null snapshot");
           }
         },
         {
-          onlyOnce: true, // Optional: Remove this if you want continuous updates
+          onlyOnce: true,
         }
       );
     } catch (error) {
@@ -42,14 +60,20 @@ const DisplayText = ({ signedTextInput }) => {
     }
   };
 
+  const buttonText = fullWord === "" ? "Start Signing!" : "Get Next Letter!";
+  
   return (
     <div style={containerStyle}>
-      <p style={{ margin: '100px' }}>Most Recent Image </p>
-      <p style={{ marginTop: '10px' }}>{signedTextInput}</p>
-      <p> should be {fullWord} </p>
-
-      {/* Button to trigger the query */}
-      <button onClick={fetchData}>Run Query</button>
+      <textarea
+        style={textAreaStyle}
+        placeholder="Your text will appear here"
+        value={fullWord}
+        readOnly
+      />
+      <br />
+      <button style={buttonStyle} onClick={fetchData}>
+        {buttonText}
+      </button>
     </div>
   );
 };

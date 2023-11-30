@@ -4,14 +4,19 @@ import DisplayText from './Components/DisplayText';
 import NavBar from './Components/NavBar';
 
 
-var signedInput = "Temp String for now";
-
 function App() {
+
+  const pageStyle = {
+    background: 'linear-gradient(to right, #ff8c00, #0074cc)', // Orange to blue gradient
+    height: '100vh',
+    overflow: 'hidden',
+  };
+
   return (
-    <div>
+    <div style = {pageStyle}>
       <NavBar />
+      <DisplayText />
       <About />
-      <DisplayText signedTextInput={signedInput}/>
     </div>
   );
 }
