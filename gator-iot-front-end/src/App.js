@@ -1,4 +1,3 @@
-import './App.css';
 import About from './Components/About';
 import DisplayText from './Components/DisplayText';
 import NavBar from './Components/NavBar';
