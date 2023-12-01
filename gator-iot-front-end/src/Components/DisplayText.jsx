@@ -1,6 +1,8 @@
-import { onValue, ref } from "firebase/database";
+import { getDatabase, onValue, ref } from "firebase/database";
 import React, { useState } from "react";
-import { db } from "../firebase";
+import { firebaseApp } from "../firebase";
+
+const db = getDatabase(firebaseApp);
 
 const DisplayText = () => {
   const containerStyle = {
